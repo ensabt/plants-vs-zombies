@@ -1,0 +1,12 @@
+<RCC>
+    <qresource prefix="/new/prefix1">
+        <file>New folder/Background.jpg</file>
+        <file>New folder/Plants_vs_Zombies_logo.png</file>
+        <file>New folder/back1-1.png</file>
+        <file>New folder/back1-1 (1).png</file>
+        <file>New folder/back2.png</file>
+        <file>New folder/back2-2.png</file>
+        <file>New folder/BackgroundEdited.jpg</file>
+        <file>New folder/back2-2Edited.png</file>
+    </qresource>
+</RCC>
