@@ -1,0 +1,286 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Dialog_ForgotPass</class>
+ <widget class="QDialog" name="Dialog_ForgotPass">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>471</width>
+    <height>395</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Dialog</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true"/>
+  </property>
+  <widget class="QStackedWidget" name="stackedWidget">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>471</width>
+     <height>401</height>
+    </rect>
+   </property>
+   <property name="currentIndex">
+    <number>1</number>
+   </property>
+   <widget class="QWidget" name="page_3">
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(0, 184, 0);</string>
+    </property>
+    <widget class="QLineEdit" name="lineEdit">
+     <property name="geometry">
+      <rect>
+       <x>160</x>
+       <y>150</y>
+       <width>191</width>
+       <height>24</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgb(97, 54, 19);</string>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="lineEdit_2">
+     <property name="geometry">
+      <rect>
+       <x>160</x>
+       <y>190</y>
+       <width>191</width>
+       <height>24</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgb(97, 54, 19);</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label">
+     <property name="geometry">
+      <rect>
+       <x>70</x>
+       <y>140</y>
+       <width>81</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: rgb(97, 54, 19);</string>
+     </property>
+     <property name="text">
+      <string>New Password:</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_2">
+     <property name="geometry">
+      <rect>
+       <x>30</x>
+       <y>190</y>
+       <width>121</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: rgb(97, 54, 19);</string>
+     </property>
+     <property name="text">
+      <string>Repeat New Password:</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="pushButton">
+     <property name="geometry">
+      <rect>
+       <x>210</x>
+       <y>260</y>
+       <width>80</width>
+       <height>24</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgb(255, 255, 0);
+color: rgb(97, 54, 19);</string>
+     </property>
+     <property name="text">
+      <string>OK</string>
+     </property>
+    </widget>
+    <widget class="QFrame" name="frame">
+     <property name="geometry">
+      <rect>
+       <x>350</x>
+       <y>230</y>
+       <width>120</width>
+       <height>80</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">image: url(:/new/prefix1/New folder/burnet-zombie.gif);</string>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::StyledPanel</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Raised</enum>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_3">
+     <property name="geometry">
+      <rect>
+       <x>100</x>
+       <y>50</y>
+       <width>271</width>
+       <height>81</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Showcard Gothic</family>
+       <pointsize>20</pointsize>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: rgb(170, 0, 0);</string>
+     </property>
+     <property name="text">
+      <string>SET NEW PASSWORD</string>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QWidget" name="page_4">
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(97, 54, 19);</string>
+    </property>
+    <widget class="QFrame" name="frame_2">
+     <property name="geometry">
+      <rect>
+       <x>-20</x>
+       <y>210</y>
+       <width>171</width>
+       <height>191</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">image: url(:/new/prefix1/New folder/back2.png);</string>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::StyledPanel</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Raised</enum>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_4">
+     <property name="geometry">
+      <rect>
+       <x>170</x>
+       <y>10</y>
+       <width>161</width>
+       <height>61</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Segoe UI Black</family>
+       <pointsize>15</pointsize>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: rgb(255, 228, 146);</string>
+     </property>
+     <property name="text">
+      <string>Fogot Password</string>
+     </property>
+    </widget>
+    <widget class="QDialogButtonBox" name="buttonBox_2">
+     <property name="geometry">
+      <rect>
+       <x>170</x>
+       <y>230</y>
+       <width>171</width>
+       <height>32</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgb(255, 228, 146);
+color: rgb(0, 0, 0);</string>
+     </property>
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+     <property name="standardButtons">
+      <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
+     </property>
+    </widget>
+    <widget class="QWidget" name="layoutWidget_2">
+     <property name="geometry">
+      <rect>
+       <x>80</x>
+       <y>90</y>
+       <width>311</width>
+       <height>61</height>
+      </rect>
+     </property>
+     <layout class="QFormLayout" name="formLayout_3">
+      <item row="0" column="0">
+       <widget class="QLabel" name="label_7">
+        <property name="styleSheet">
+         <string notr="true">color: rgb(255, 228, 146);</string>
+        </property>
+        <property name="text">
+         <string>Username:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="QLineEdit" name="lineEdit_5">
+        <property name="styleSheet">
+         <string notr="true">color: rgb(255, 228, 146);
+border-color: rgb(252, 255, 185);</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="QLabel" name="label_8">
+        <property name="styleSheet">
+         <string notr="true">color: rgb(255, 228, 146);</string>
+        </property>
+        <property name="text">
+         <string>Password:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="1">
+       <widget class="QLineEdit" name="lineEdit_6">
+        <property name="styleSheet">
+         <string notr="true">color: rgb(255, 228, 146);
+border-color: rgb(252, 255, 185);</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </widget>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
