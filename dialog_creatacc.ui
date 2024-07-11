@@ -114,8 +114,7 @@
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">image: url(:/new/prefix1/New folder/back2-2Edited.png);
-</string>
+    <string notr="true">image: url(:/new/prefix1/New folder/back2-2Edited.png);</string>
    </property>
    <property name="frameShape">
     <enum>QFrame::StyledPanel</enum>

@@ -10,24 +10,39 @@ CONFIG += c++17
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
-    Headers.cpp \
+    dialod_setting.cpp \
     dialog_connecttoserver.cpp \
     dialog_creatacc.cpp \
+    dialog_creator.cpp \
     dialog_forgotpass.cpp \
+    dialog_help.cpp \
+    dialog_stop.cpp \
     main.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    plants.cpp \
+    zombies.cpp
 
 HEADERS += \
     Headers.h \
+    dialod_setting.h \
     dialog_connecttoserver.h \
     dialog_creatacc.h \
+    dialog_creator.h \
     dialog_forgotpass.h \
-    mainwindow.h
+    dialog_help.h \
+    dialog_stop.h \
+    mainwindow.h \
+    plants.h \
+    zombies.h
 
 FORMS += \
+    dialod_setting.ui \
     dialog_connecttoserver.ui \
     dialog_creatacc.ui \
+    dialog_creator.ui \
     dialog_forgotpass.ui \
+    dialog_help.ui \
+    dialog_stop.ui \
     mainwindow.ui
 
 # Default rules for deployment.

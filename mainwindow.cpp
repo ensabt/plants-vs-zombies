@@ -1,9 +1,12 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-//#include "Headers.h"
+#include "Headers.h"
 #include "dialog_creatacc.h"
 #include "dialog_connecttoserver.h"
 #include "dialog_forgotpass.h"
+#include"dialog_creator.h"
+#include"dialog_help.h"
+#include"dialog_stop.h"
 #include <QVector>
 
 MainWindow::MainWindow(QWidget *parent)
@@ -96,7 +99,7 @@ void MainWindow::UpdateProgress(){
 void MainWindow::Receiver_Connectdialog(QString ip){
     socket = new QTcpSocket();
     socket->connectToHost(ip, 2000);
-    if (socket->waitForConnected(3000)){
+    if (socket){
         QMessageBox::information(this, "Success", "Connecting to seerver is finished successfully.");
         connect(socket, &QTcpSocket::connected, this, &MainWindow::socket_connected);
         connect(socket, &QTcpSocket::readyRead, this, &MainWindow::socket_readyRead);
@@ -125,16 +128,6 @@ void MainWindow::Reciever_CreatAcc(QString user, QString passHashed, QString nam
     //     emit check_CreatAcc(user, pass, name, email, address, age);
 }
 
-void MainWindow::Reseiver1_Forgot(QString user, QString phone)
-{
-    sendData("F1" + user + "," + phone);
-}
-
-void MainWindow::Receiver2_Forgot(QString pass)
-{
-    sendData("F2" + pass);
-}
-
 void MainWindow::on_pushButton_continue_clicked(){
     //open connect_dialog
     Dialog_ConnectToServer *d = new Dialog_ConnectToServer(this);
@@ -151,9 +144,7 @@ void MainWindow::on_pushBtn_CreatAcc_clicked()
 void MainWindow::on_pushBtn_Forgot_clicked()
 {
     Dialog_ForgotPass *f = new Dialog_ForgotPass(this);
-    connect (f, SIGNAL(userPhoneToServer(QString,QString)), this, SLOT(Receiver1_Forgot(QString, QString)));
-    connect (f, SIGNAL(forgotPassToServer(QString)), this, SLOT(Receiver2_Forgot(QString)));
-    connect (f, SIGNAL(ResultForgotCheckD(bool)), this, SLOT(Checked(bool)));
+    connect (f, SIGNAL(), this, SLOT());
     f->show();
 }
 void MainWindow::on_pushBtn_Login_clicked(){
@@ -161,5 +152,60 @@ void MainWindow::on_pushBtn_Login_clicked(){
     socket->write("L"+ ui->In_username->text().toUtf8() + "," + HashedPass(ui->In_Password->text()).toUtf8());
 
     //recieve true or false to continue
+}
+
+
+void MainWindow::on_pushButton_clicked()
+{
+    Dialog_creator *d = new Dialog_creator(this);
+    connect(d,SIGNAL(),this,SLOT());
+    d->show();
+}
+
+
+void MainWindow::on_pushButton_8_clicked()
+{
+    QApplication::quit();
+}
+
+
+void MainWindow::on_pushButton_4_clicked()
+{
+    Dialog_Help *d = new Dialog_Help(this);
+    connect(d,SIGNAL(),this,SLOT());
+    d->show();
+}
+
+
+void MainWindow::on_pushButton_6_clicked()
+{
+    //go to menu game!
+}
+
+
+void MainWindow::on_pushButton_9_clicked()
+{
+    //empty
+}
+
+
+void MainWindow::home()
+{
+    ui->stackedWidget->setCurrentIndex(4);
+}
+void MainWindow::on_pushButton_12_clicked()
+{
+    Dialog_stop *d =new Dialog_stop(this);
+    connect(d,SIGNAL(go_tomain()), this, SLOT(home()));
+    d->show();
+
+}
+
+
+void MainWindow::on_toolButton_clicked()
+{
+    Dialog_stop *d =new Dialog_stop(this);
+    connect(d,SIGNAL(go_tomain()), this, SLOT(home()));
+    d->show();
 }
 

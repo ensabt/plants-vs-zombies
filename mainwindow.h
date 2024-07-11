@@ -22,34 +22,43 @@ public:
     void disconnecting();
     void sendData(QString);
 
-
 private slots:
     void UpdateProgress();
     void on_pushButton_continue_clicked();
+    void on_pushButton_2_clicked();
+    void on_pushButton_3_clicked();
+    void on_pushButton_4_clicked();
     void on_pushBtn_CreatAcc_clicked();
     void on_pushBtn_Forgot_clicked();
-    void on_pushBtn_Login_clicked();
 
     void Receiver_Connectdialog (QString);
     void Reciever_CreatAcc(QString, QString, QString, QString, QString, int);
-    void Reseiver1_Forgot(QString user, QString phone);
-    void Receiver2_Forgot (QString pass);
-
     //ResultOfCheckCreatAcc.
-
+    void home();
     //for sockets:
     void socket_readyRead();
     void socket_connected();
     void socket_disconnected();
     void socket_bytesWritten();
 
+    void on_pushBtn_Login_clicked();
 
+    void on_pushButton_clicked();
+
+    void on_pushButton_8_clicked();
+
+    void on_pushButton_9_clicked();
+
+    void on_pushButton_6_clicked();
+
+    void on_pushButton_12_clicked();
+
+    void on_toolButton_clicked();
 
 public slots:
 
 signals:
     void check_CreatAcc(QString, QString, QString, QString, QString, int);
-    void ResultForgotCheckD(bool c);
 
 private:
     Ui::MainWindow *ui;

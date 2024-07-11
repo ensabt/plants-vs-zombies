@@ -1,35 +1,59 @@
 <RCC>
     <qresource prefix="/new/prefix1">
-        <file>New folder/1366_521.jpg</file>
-        <file>New folder/20240710_164439.png</file>
-        <file>New folder/any.png</file>
-        <file>New folder/b57afd2031055ff56bf68b2bd43bba65.jpg</file>
-        <file>New folder/back.png</file>
-        <file>New folder/back1-1 (1).png</file>
+        <file>New folder/Background.jpg</file>
+        <file>New folder/Plants_vs_Zombies_logo.png</file>
         <file>New folder/back1-1.png</file>
+        <file>New folder/1366_521.jpg</file>
+        <file>New folder/b57afd2031055ff56bf68b2bd43bba65.jpg</file>
+        <file>New folder/back1-1 (1).png</file>
         <file>New folder/back2.png</file>
         <file>New folder/back2-2.png</file>
-        <file>New folder/back2-2Edited.png</file>
-        <file>New folder/Background.jpg</file>
+        <file>New folder/Untitled.png</file>
         <file>New folder/BackgroundEdited.jpg</file>
-        <file>New folder/burnet-zombie.gif</file>
-        <file>New folder/come.png</file>
+        <file>New folder/back2-2Edited.png</file>
+        <file>New folder/imagesup.png</file>
+        <file>New folder/photo12497558217.jpg</file>
+        <file>New folder/plants.png</file>
+        <file>New folder/plantspro (2).png</file>
+        <file>New folder/parspng..png</file>
+        <file>New folder/any.png</file>
         <file>New folder/ensieh.jpg</file>
         <file>New folder/fatemeh.jpg</file>
-        <file>New folder/imagesup.png</file>
+        <file>New folder/w.jpg</file>
+        <file>New folder/back.png</file>
+        <file>New folder/20240710_164439.png</file>
         <file>New folder/IMG_20240710_163405_406 (2).png</file>
-        <file>New folder/parspng..png</file>
         <file>New folder/photo_2024-07-10_17-48-27_prev_ui (1).png</file>
         <file>New folder/photo_2024-07-10_18-02-19_prev_ui (2).png</file>
-        <file>New folder/photo12497558217.jpg</file>
         <file>New folder/photo12503220688.jpg</file>
         <file>New folder/photo12504490303.jpg</file>
-        <file>New folder/plants.png</file>
-        <file>New folder/Plants_vs_Zombies_logo.png</file>
-        <file>New folder/plantspro (2).png</file>
+        <file>New folder/come.png</file>
+        <file>New folder/history.png</file>
         <file>New folder/slazzer-edit-image (6).png</file>
-        <file>New folder/sunflower-pvz.png</file>
-        <file>New folder/Untitled.png</file>
-        <file>New folder/w.jpg</file>
+        <file>New folder/back to menu.png</file>
+        <file>New folder/story-size.jpg</file>
+        <file>New folder/Background2 (1) (1).png</file>
+        <file>New folder/menu.jpg</file>
+        <file>New folder/Sun_PvZ2 (2).png</file>
+        <file>New folder/walnut (1).png</file>
+        <file>New folder/boomrang_transparent.png</file>
+        <file>New folder/1e0523cbdaf24f8fa9f6c4dd21032606SqtxlREDcbgDYDlF-3.png</file>
+        <file>New folder/252ea746-3c5e-4a72-ad4e-957e79283ef4-4.png</file>
+        <file>New folder/d36d2480c47242889d8029aaaf14129fyArWDsQjEXLc88b6-1.png</file>
+        <file>New folder/plane son.jpg</file>
+        <file>New folder/brownphoto.jpg</file>
+        <file>New folder/stopmenu.png</file>
+        <file>New folder/orangecolorpng.jpg</file>
+        <file>New folder/Credits_BigBrain.png</file>
+    </qresource>
+    <qresource prefix="/zombies">
+        <file>New folder/astronaut zombie.png</file>
+        <file>New folder/buckethead zombie.png</file>
+        <file>New folder/tall zombie.png</file>
+        <file>New folder/purplehair zombies.png</file>
+        <file>New folder/regullar zombie.png</file>
+        <file>New folder/dead zombie.gif</file>
+        <file>New folder/leafheadzombie.png</file>
+        <file>New folder/Brain.png</file>
     </qresource>
 </RCC>
