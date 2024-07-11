@@ -2,7 +2,6 @@
 #define DIALOG_FORGOTPASS_H
 
 #include <QDialog>
-#include "Headers.h"
 
 namespace Ui {
 class Dialog_ForgotPass;
@@ -20,14 +19,15 @@ private slots:
     void checked_from_server(bool b);
     void on_pushButton_clicked(); //ok pass
     void on_buttonBox_2_accepted(); //user/phone
-    void Checked(bool c);
 
 signals:
-    void userPhoneToServer(QString, QString);//send username and phone to server for check
-    void forgotPassToServer (QString);
+    void userPhoneToServer(QString, QString);
+    void forgotPassToServer (QString); //send username and phone to server for check
+
 
 private:
     Ui::Dialog_ForgotPass *ui;
 };
+
 
 #endif // DIALOG_FORGOTPASS_H

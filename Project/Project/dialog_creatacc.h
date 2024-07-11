@@ -1,7 +1,6 @@
 #ifndef DIALOG_CREATACC_H
 #define DIALOG_CREATACC_H
 #include <QDialog>
-#include "Headers.h"
 namespace Ui {
 class Dialog_CreatAcc;
 }
@@ -23,5 +22,7 @@ private slots:
 private:
     Ui::Dialog_CreatAcc *ui;
 };
+
+
 
 #endif // DIALOG_CREATACC_H

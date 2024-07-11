@@ -1,6 +1,6 @@
 #include "dialog_creatacc.h"
 #include "ui_dialog_creatacc.h"
-
+#include"hash.h"
 Dialog_CreatAcc::Dialog_CreatAcc(QWidget *parent)
     : QDialog(parent)
     , ui(new Ui::Dialog_CreatAcc)
