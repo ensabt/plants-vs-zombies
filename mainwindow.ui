@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="sizePolicy">
-   <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+   <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
     <horstretch>0</horstretch>
     <verstretch>0</verstretch>
    </sizepolicy>
@@ -41,10 +41,10 @@
    <widget class="QStackedWidget" name="stackedWidget">
     <property name="geometry">
      <rect>
-      <x>-10</x>
-      <y>80</y>
-      <width>951</width>
-      <height>601</height>
+      <x>20</x>
+      <y>100</y>
+      <width>801</width>
+      <height>591</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -55,13 +55,13 @@
     </property>
     <widget class="QWidget" name="p1_load">
      <property name="styleSheet">
-      <string notr="true">image: url(:/new/prefix1/New folder/BackgroundEdited.jpg);</string>
+      <string notr="true">image: url(:/new/prefix1/New folder/Background.jpg);</string>
      </property>
      <widget class="QProgressBar" name="progressBar">
       <property name="geometry">
        <rect>
-        <x>530</x>
-        <y>410</y>
+        <x>440</x>
+        <y>430</y>
         <width>271</width>
         <height>21</height>
        </rect>
@@ -82,17 +82,11 @@ background-color: rgb(255, 255, 255);
      <widget class="QPushButton" name="pushButton_continue">
       <property name="geometry">
        <rect>
-        <x>550</x>
+        <x>510</x>
         <y>460</y>
-        <width>191</width>
+        <width>141</width>
         <height>21</height>
        </rect>
-      </property>
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Ignored" vsizetype="Ignored">
-        <horstretch>0</horstretch>
-        <verstretch>0</verstretch>
-       </sizepolicy>
       </property>
       <property name="font">
        <font>
@@ -113,7 +107,10 @@ background-color: rgb(255, 255, 255);
        <enum>Qt::StrongFocus</enum>
       </property>
       <property name="styleSheet">
-       <string notr="true"/>
+       <string notr="true">:hover {
+  background-color: orange; /* رنگ هنگام hover */
+}
+</string>
       </property>
       <property name="text">
        <string>Press to continue</string>
@@ -131,8 +128,46 @@ background-color: rgb(255, 255, 255);
        <bool>false</bool>
       </property>
      </widget>
+     <widget class="QFrame" name="frame_5">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>811</width>
+        <height>581</height>
+       </rect>
+      </property>
+      <property name="frameShape">
+       <enum>QFrame::StyledPanel</enum>
+      </property>
+      <property name="frameShadow">
+       <enum>QFrame::Raised</enum>
+      </property>
+     </widget>
+     <zorder>frame_5</zorder>
+     <zorder>progressBar</zorder>
+     <zorder>pushButton_continue</zorder>
     </widget>
     <widget class="QWidget" name="p2_log1">
+     <widget class="QFrame" name="frame">
+      <property name="geometry">
+       <rect>
+        <x>300</x>
+        <y>30</y>
+        <width>201</width>
+        <height>131</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">border-image: url(:/new/prefix1/New folder/Plants_vs_Zombies_logo.png);</string>
+      </property>
+      <property name="frameShape">
+       <enum>QFrame::StyledPanel</enum>
+      </property>
+      <property name="frameShadow">
+       <enum>QFrame::Raised</enum>
+      </property>
+     </widget>
      <widget class="QFrame" name="frame_2">
       <property name="geometry">
        <rect>
@@ -152,13 +187,119 @@ background-color: rgb(255, 255, 255);
        <enum>QFrame::Raised</enum>
       </property>
      </widget>
+     <widget class="QLineEdit" name="In_username">
+      <property name="geometry">
+       <rect>
+        <x>320</x>
+        <y>230</y>
+        <width>211</width>
+        <height>24</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(255, 255, 255);</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="In_Password">
+      <property name="geometry">
+       <rect>
+        <x>320</x>
+        <y>270</y>
+        <width>211</width>
+        <height>24</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(255, 255, 255);</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label">
+      <property name="geometry">
+       <rect>
+        <x>220</x>
+        <y>230</y>
+        <width>91</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Segoe UI Black</family>
+        <pointsize>12</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(0, 0, 0);</string>
+      </property>
+      <property name="text">
+       <string>Username:</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_2">
+      <property name="geometry">
+       <rect>
+        <x>220</x>
+        <y>270</y>
+        <width>81</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Segoe UI Black</family>
+        <pointsize>12</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(0, 0, 0);</string>
+      </property>
+      <property name="text">
+       <string>Password:</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushBtn_Login">
+      <property name="geometry">
+       <rect>
+        <x>380</x>
+        <y>320</y>
+        <width>80</width>
+        <height>24</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(0, 170, 0);
+color: rgb(170, 0, 0);</string>
+      </property>
+      <property name="text">
+       <string>Login</string>
+      </property>
+     </widget>
+     <widget class="QFrame" name="frame_3">
+      <property name="geometry">
+       <rect>
+        <x>520</x>
+        <y>90</y>
+        <width>281</width>
+        <height>451</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">image: url(:/new/prefix1/New folder/back2-2.png);</string>
+      </property>
+      <property name="frameShape">
+       <enum>QFrame::StyledPanel</enum>
+      </property>
+      <property name="frameShadow">
+       <enum>QFrame::Raised</enum>
+      </property>
+     </widget>
      <widget class="QFrame" name="frame_4">
       <property name="geometry">
        <rect>
-        <x>0</x>
-        <y>0</y>
-        <width>951</width>
-        <height>491</height>
+        <x>-1</x>
+        <y>-10</y>
+        <width>801</width>
+        <height>501</height>
        </rect>
       </property>
       <property name="styleSheet">
@@ -170,12 +311,12 @@ background-color: rgb(255, 255, 255);
       <property name="frameShadow">
        <enum>QFrame::Raised</enum>
       </property>
-      <widget class="QPushButton" name="pushButton">
+      <widget class="QPushButton" name="pushBtn_Forgot">
        <property name="geometry">
         <rect>
-         <x>400</x>
-         <y>380</y>
-         <width>161</width>
+         <x>330</x>
+         <y>420</y>
+         <width>131</width>
          <height>24</height>
         </rect>
        </property>
@@ -198,12 +339,12 @@ background-color: rgb(255, 255, 255);
         <bool>true</bool>
        </property>
       </widget>
-      <widget class="QPushButton" name="pushButton_2">
+      <widget class="QPushButton" name="pushBtn_CreatAcc">
        <property name="geometry">
         <rect>
-         <x>410</x>
-         <y>420</y>
-         <width>131</width>
+         <x>340</x>
+         <y>440</y>
+         <width>111</width>
          <height>31</height>
         </rect>
        </property>
@@ -226,134 +367,16 @@ background-color: rgb(255, 255, 255);
         <bool>true</bool>
        </property>
       </widget>
-      <widget class="QFrame" name="frame_3">
-       <property name="geometry">
-        <rect>
-         <x>670</x>
-         <y>90</y>
-         <width>281</width>
-         <height>451</height>
-        </rect>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">image: url(:/new/prefix1/New folder/back2-2.png);</string>
-       </property>
-       <property name="frameShape">
-        <enum>QFrame::StyledPanel</enum>
-       </property>
-       <property name="frameShadow">
-        <enum>QFrame::Raised</enum>
-       </property>
-      </widget>
-      <widget class="QLineEdit" name="In_username">
-       <property name="geometry">
-        <rect>
-         <x>380</x>
-         <y>220</y>
-         <width>211</width>
-         <height>24</height>
-        </rect>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">background-color: rgb(255, 255, 255);</string>
-       </property>
-      </widget>
-      <widget class="QFrame" name="frame">
-       <property name="geometry">
-        <rect>
-         <x>370</x>
-         <y>30</y>
-         <width>201</width>
-         <height>131</height>
-        </rect>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">border-image: url(:/new/prefix1/New folder/Plants_vs_Zombies_logo.png);</string>
-       </property>
-       <property name="frameShape">
-        <enum>QFrame::StyledPanel</enum>
-       </property>
-       <property name="frameShadow">
-        <enum>QFrame::Raised</enum>
-       </property>
-      </widget>
-      <widget class="QLabel" name="label">
-       <property name="geometry">
-        <rect>
-         <x>270</x>
-         <y>220</y>
-         <width>91</width>
-         <height>20</height>
-        </rect>
-       </property>
-       <property name="font">
-        <font>
-         <family>Segoe UI Black</family>
-         <pointsize>12</pointsize>
-        </font>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">color: rgb(0, 0, 0);</string>
-       </property>
-       <property name="text">
-        <string>Username:</string>
-       </property>
-      </widget>
-      <widget class="QLineEdit" name="In_Password">
-       <property name="geometry">
-        <rect>
-         <x>380</x>
-         <y>260</y>
-         <width>211</width>
-         <height>24</height>
-        </rect>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">background-color: rgb(255, 255, 255);</string>
-       </property>
-      </widget>
-      <widget class="QLabel" name="label_2">
-       <property name="geometry">
-        <rect>
-         <x>270</x>
-         <y>260</y>
-         <width>81</width>
-         <height>16</height>
-        </rect>
-       </property>
-       <property name="font">
-        <font>
-         <family>Segoe UI Black</family>
-         <pointsize>12</pointsize>
-        </font>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">color: rgb(0, 0, 0);</string>
-       </property>
-       <property name="text">
-        <string>Password:</string>
-       </property>
-      </widget>
-      <widget class="QPushButton" name="pushButton_3">
-       <property name="geometry">
-        <rect>
-         <x>430</x>
-         <y>310</y>
-         <width>80</width>
-         <height>24</height>
-        </rect>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">background-color: rgb(0, 170, 0);
-color: rgb(170, 0, 0);</string>
-       </property>
-       <property name="text">
-        <string>Login</string>
-       </property>
-      </widget>
      </widget>
      <zorder>frame_4</zorder>
+     <zorder>frame_3</zorder>
+     <zorder>frame</zorder>
      <zorder>frame_2</zorder>
+     <zorder>In_username</zorder>
+     <zorder>In_Password</zorder>
+     <zorder>label</zorder>
+     <zorder>label_2</zorder>
+     <zorder>pushBtn_Login</zorder>
     </widget>
    </widget>
   </widget>
