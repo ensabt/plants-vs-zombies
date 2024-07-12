@@ -1,211 +1,191 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-#include "Headers.h"
-#include "dialog_creatacc.h"
-#include "dialog_connecttoserver.h"
-#include "dialog_forgotpass.h"
-#include"dialog_creator.h"
-#include"dialog_help.h"
-#include"dialog_stop.h"
-#include <QVector>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    socket = new QTcpSocket();
     t = new QTimer(this);
-    t->setInterval(250);
-    t->start();
-    connect(t, SIGNAL(timeout()), this, SLOT(UpdateProgress()));
-    // ui->stackedWidget->setCurrentWidget();
-    ui->stackedWidget->setCurrentIndex(0);
-    ui->pushButton_continue->setVisible(false);
+    t->setInterval(1000);
+    connect(t, SIGNAL(QTimer::timeout()), SLOT(mainWindow::updateProgress()));
+
+    //qDebug() << ("Connecting...");
+     server = new QTcpServer();
+     server->listen(QHostAddress::Any, 2000);
+     if (server->isListening())
+    {
+         connect(server, &QTcpServer::newConnection, this, &MainWindow::server_newConnection);
+         //qDebug() << ("Connected!");
+    }
 
 }
+
 MainWindow::~MainWindow()
 {
-    if(socket)
+    if (!server)
     {
-        delete socket;
+        qDebug() << "Not connected yet!";
+    } else
+    {
+        for (auto& _socket : clients) {//for 4client
+            if (!_socket)
+            {
+                 delete _socket;
+             }
+            _socket = nullptr;
+        }
+
+        delete server;
+        server = nullptr;
+        qDebug() << "Disconnected!";
     }
     delete ui;
 }
 
-QVector<QString> receives;
-int percent = 0;
-QString IP;
-int Port;
-
-void MainWindow::connecting(QString ip, int port){
-    socket->connectToHost(ip, port);
-    if(socket->waitForConnected(5000)){
-        connect(socket, &QTcpSocket::connected, this, &MainWindow::socket_connected);
-        connect(socket, &QTcpSocket::readyRead, this, &MainWindow::socket_readyRead);
-        connect(socket, &QTcpSocket::bytesWritten, this, &MainWindow::socket_bytesWritten);
-        connect(socket, &QTcpSocket::disconnected, this, &MainWindow::socket_disconnected);
+void MainWindow::SendData(QString data)
+{
+    for (auto& _socket : clients) {
+        if (_socket)
+        {
+            _socket->write(data.toStdString().c_str());//ui->input->toplaintext().toutf8
+            qDebug() << "Data was sent!";
+        }
     }
 }
-void MainWindow::disconnecting()
+
+void MainWindow::importFromFileUsers()
 {
-    if (!socket)
+    QFile file("users.txt");
+    if(file.open(QIODevice::ReadOnly | QIODevice::Text)) {
+        QTextStream in(&file);
+        while(!in.atEnd()) {
+            QString line = in.readLine();
+            QStringList data = line.split("\t");
+            UserPasses.insert(data[0], data[1]); // Assuming data[0] is username and data[1] is hashed password
+            UserPhones.insert(data[1], data[2]);
+        }
+        file.close();
+    }
+}
+
+///save to file
+// QFile file("users.txt");
+// if(file.open(QIODevice::Append | QIODevice::Text)) {
+//     QTextStream out(&file);
+//     out << UserName << "\t" << HASHed << "\t" << FullName << "\t" << Email << "\t" << Age << "\t" << Gender << "\n";
+//     file.close();
+// }
+
+///read and save
+// QFile file("users.txt");
+// if(file.open(QIODevice::ReadOnly | QIODevice::Text)) {
+//     QTextStream in(&file);
+//     while(!in.atEnd()) {
+//         QString line = in.readLine();
+//         QStringList data = line.split("\t");
+//         UserPasses.insert(data[0], data[1]); // Assuming data[0] is username and data[1] is hashed password
+//     }
+//     file.close();
+// }
+
+// if(UserPasses.contains(ui->lineEdit->text())) {
+//     QString storedPassword = UserPasses.value(ui->lineEdit->text());
+//     QByteArray inputHash = QCryptographicHash::hash(ui->lineEdit->text().toUtf8(), QCryptographicHash::Sha256);
+
+//     if(storedPassword == inputHash.toHex()) {
+//         QMessageBox::information(this, "Success", "Username and Password are Correect.");
+//     }
+//     else {
+//         QMessageBox::information(this, "Fail", "Username or Password is not correct!");
+//     }
+// }
+// else
+//     QMessageBox::information(this, "Fail", "Username or Password is not correct!");
+
+void MainWindow::updateProgress()
+{
+    //every 1 sec:
+    if (!Messages.empty()){
+        for(auto m: Messages){
+            if(m[0] == 'C'){ //creat acc
+                //check the userpasses to it does'nt exist
+                QRegularExpression separator("[,\\s]+"); // الگو برای جدا کردن بر اساس , و فاصله
+                QStringList parts = m.split(separator);
+                if(!UserPasses.contains(parts[0])){
+                    //we can add
+                    QFile file("users.txt");
+                    if(file.open(QIODevice::Append | QIODevice::Text)) {
+                        QTextStream out(&file);
+                        for (int i=0; i<6; i++) {
+                            out << parts[i];
+                        }
+                        out << "\n";
+                        file.close();
+                    }
+                    importFromFileUsers();
+                    SendData("R1");
+                }
+                else{
+                    SendData("R0");
+                }
+
+            }
+            else if(m[0] == 'L'){//login
+
+            }
+            else if(m[0] == 'F'){//forgot1
+                if(m[1] == '1'){
+                    //it's mean that username & phoneNum is received.
+                    QRegularExpression separator("[,\\s]+"); // الگو برای جدا کردن بر اساس , و فاصله
+                    QStringList parts = m.split(separator);
+                    if(!UserPasses.contains(parts[0])){
+
+                    }
+                }
+                else if(m[1] == '2'){//forgot2
+
+                }
+            }
+        }
+    }
+}
+
+void MainWindow::server_newConnection()
+{
+    QTcpSocket * new_client = server->nextPendingConnection();
+
+    clients.append(new_client);
+    connect(new_client, &QTcpSocket::connected, this, &MainWindow::socket_connected);
+    connect(new_client, &QIODevice::readyRead, this, [this, new_client](){ socket_readyRead(new_client); });
+    connect(new_client, &QIODevice::bytesWritten, this, [this, new_client](){ socket_bytesWritten(new_client); });
+    connect(new_client, &QAbstractSocket::disconnected, this, [this, new_client](){ socket_disconnected(new_client); });
+}
+void MainWindow::socket_connected()
+{
+    qDebug() << ("Connected!");//ui->output->append("coected!"); ui->output->append
+}
+void MainWindow::socket_readyRead(QTcpSocket *_socket)
+{
+    QByteArray data = _socket->readAll();
+    qDebug() << _socket->objectName() << ": " << data;
+    Messages.push_back(data);
+
+}
+void MainWindow::socket_bytesWritten(QTcpSocket *_socket)
+{
+    qDebug() << "Data was written!\t" << _socket->isOpen();
+}
+void MainWindow::socket_disconnected(QTcpSocket *_socket)
+{
+    qDebug() << _socket->objectName() << " disconnected!";
+    clients.removeOne(_socket);
+
+    for (int var = 0; var < clients.size(); ++var)
     {
-        qDebug("Not connected yet!");
-    } else
-    {
-        delete socket;
-        socket = nullptr;
-        qDebug("Disconnected!");
-    }
-}
-void MainWindow::sendData(QString str)
-{
-    if (socket && socket->isOpen())
-    {
-        socket->write(str.toStdString().c_str()); //or to utf8
-        socket->flush();
-        qDebug("Data was sent!");
-    }
-}
-void MainWindow::socket_connected(){
-    qDebug("Connected!");
-}
-void MainWindow::socket_readyRead(){
-    ////////////
-    QByteArray data = socket->readAll();
-    receives.push_back(data);
-}
-void MainWindow::socket_bytesWritten()
-{
-    qDebug("Data was written!");
-}
-void MainWindow::socket_disconnected()
-{
-    qDebug("Disconnected!");
-}
-
-void MainWindow::UpdateProgress(){
-    ui->progressBar->setValue(percent);
-    if(percent > 100){
-        t->stop();
-        //ui->stackedWidget->setCurrentIndex(1);
-        ui->pushButton_continue->setVisible(true);
-
-    }
-    percent++;
-}
-
-void MainWindow::Receiver_Connectdialog(QString ip){
-    socket = new QTcpSocket();
-    socket->connectToHost(ip, 2000);
-    if (socket){
-        QMessageBox::information(this, "Success", "Connecting to seerver is finished successfully.");
-        connect(socket, &QTcpSocket::connected, this, &MainWindow::socket_connected);
-        connect(socket, &QTcpSocket::readyRead, this, &MainWindow::socket_readyRead);
-        connect(socket, &QTcpSocket::bytesWritten, this, &MainWindow::socket_bytesWritten);
-        connect(socket, &QTcpSocket::disconnected, this, &MainWindow::socket_disconnected);
-
-        ui->stackedWidget->setCurrentIndex(1);
-    }
-    else{
-        QMessageBox::information(this, "Fail", "Connecting to seerver is finished with Errors!\n plese enter the IP again.");
-
-        Dialog_ConnectToServer *d = new Dialog_ConnectToServer(this);
-        connect(d, SIGNAL(sender(QString)), this, SLOT(Receiver_Connectdialog (QString)));
-        d->show();
+        clients[var]->setObjectName("Client " + QString::number(var + 1));
     }
 
-}
-void MainWindow::Reciever_CreatAcc(QString user, QString passHashed, QString name, QString email, QString address, int age){
-    //send to server and check...
-    socket->write("C"+ user.toUtf8()+ ","+ passHashed.toUtf8()+ ","+ name.toUtf8()+ ","+ email.toUtf8()+
-                  ","+ address.toUtf8()+ ","+QString::number(age).toUtf8());
-
-    // if(){ //to check parameters...
-    // }
-    // else ///emit a signal to check creat account.
-    //     emit check_CreatAcc(user, pass, name, email, address, age);
-}
-
-void MainWindow::on_pushButton_continue_clicked(){
-    //open connect_dialog
-    Dialog_ConnectToServer *d = new Dialog_ConnectToServer(this);
-    connect(d, SIGNAL(senderConnect(QString)), this, SLOT(Receiver_Connectdialog (QString)));
-    d->show();
-    //ui->stackedWidget->setCurrentIndex(1);
-}
-void MainWindow::on_pushBtn_CreatAcc_clicked()
-{
-    Dialog_CreatAcc *d = new Dialog_CreatAcc(this);
-    connect(d, SIGNAL(senderCreat(QString)), this, SLOT(Receiver_Connectdialog (QString)));
-    d->show();
-}
-void MainWindow::on_pushBtn_Forgot_clicked()
-{
-    Dialog_ForgotPass *f = new Dialog_ForgotPass(this);
-    connect (f, SIGNAL(), this, SLOT());
-    f->show();
-}
-void MainWindow::on_pushBtn_Login_clicked(){
-    //send the text of username & password
-    socket->write("L"+ ui->In_username->text().toUtf8() + "," + HashedPass(ui->In_Password->text()).toUtf8());
-
-    //recieve true or false to continue
-}
-
-
-void MainWindow::on_pushButton_clicked()
-{
-    Dialog_creator *d = new Dialog_creator(this);
-    connect(d,SIGNAL(),this,SLOT());
-    d->show();
-}
-
-
-void MainWindow::on_pushButton_8_clicked()
-{
-    QApplication::quit();
-}
-
-
-void MainWindow::on_pushButton_4_clicked()
-{
-    Dialog_Help *d = new Dialog_Help(this);
-    connect(d,SIGNAL(),this,SLOT());
-    d->show();
-}
-
-
-void MainWindow::on_pushButton_6_clicked()
-{
-    //go to menu game!
-}
-
-
-void MainWindow::on_pushButton_9_clicked()
-{
-    //empty
-}
-
-
-void MainWindow::home()
-{
-    ui->stackedWidget->setCurrentIndex(4);
-}
-void MainWindow::on_pushButton_12_clicked()
-{
-    Dialog_stop *d =new Dialog_stop(this);
-    connect(d,SIGNAL(go_tomain()), this, SLOT(home()));
-    d->show();
-
-}
-
-
-void MainWindow::on_toolButton_clicked()
-{
-    Dialog_stop *d =new Dialog_stop(this);
-    connect(d,SIGNAL(go_tomain()), this, SLOT(home()));
-    d->show();
+    _socket->deleteLater();
 }
 
